@@ -145,3 +145,5 @@ pixi.lock
 
 .DS_Store
 
+
+**/*.quarto_ipynb

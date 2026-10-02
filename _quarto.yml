@@ -1,10 +1,5 @@
 project:
   type: book
-  post-render: 
-    # - quarto render --profile slides
-    - quarto render slides/
-    - quarto render thesis/
-    - quarto render manuscript/
     
 execute:
   freeze: auto
@@ -37,23 +32,12 @@ book:
     search: true  
   chapters:
     - index.qmd
-    - part: "Slides"
-      chapters:
-      # (the same files must be listed _quarto-slides.yml to render as slides)
-      - slides/index.qmd 
     - part: "Notebooks"
       chapters: 
       - notebooks/ttll10_structure.ipynb
     - part: "Workflows"
       chapters: 
       - workflow.py
-    # - part: "Reports"
-    #   chapters: 
-    #   - reports/example.qmd
-    # - part: "Tables"
-    #   chapters: 
-    #   - tables/example.ipynb
-  downloads: [pdf]
      
 bibliography: references.bib
 
