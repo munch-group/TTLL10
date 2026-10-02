@@ -1,0 +1,254 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TTLL10",
+    "section": "",
+    "text": "Preface\nThese pages are generated from a Git repository…",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "TTLL10",
+    "section": "Section",
+    "text": "Section\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#section-1",
+    "href": "index.html#section-1",
+    "title": "TTLL10",
+    "section": "Section",
+    "text": "Section\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "TTLL10",
+    "section": "Install",
+    "text": "Install\nconda install -c conda-forge git git-lfs\ngit lfs install",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#configure",
+    "href": "index.html#configure",
+    "title": "TTLL10",
+    "section": "Configure",
+    "text": "Configure\ngit lfs track \"*.h5\"\ngit add .gitattributes ; git commit -m 'Added LFS' ; git push\nFrom now, on all h5 files add added to the repo will go on lfs.\nhttps://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#managing-files",
+    "href": "index.html#managing-files",
+    "title": "TTLL10",
+    "section": "Managing files",
+    "text": "Managing files\n\n\n\n\n\n\nWarning\n\n\n\nManaging files is for the PI only.\n\n\nhttps://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-git-lfs-objects-in-archives-of-your-repository # Submodules\nSubmodules are useful if you have analysis components that are used across many projects or if results from several past/ongoing projects need to be integrated in a project as a third-party library.\nThe repos can each have their own adjustable workflow as decribed here, that are then easily put together in a larger workflow as described here.\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you install the current version of Git in your environments. The one on the cluster is ancient.\nconda install -c conda-forge git\nI also set these configs for each environment to get nicer/safer commands (commands below assume these are set):\ngit config --global diff.submodule log\ngit config status.submodulesummary 1\ngit config push.recurseSubmodules check",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#tldr",
+    "href": "index.html#tldr",
+    "title": "TTLL10",
+    "section": "TLDR;",
+    "text": "TLDR;\n# clone repository as submodule\ngit submodule add git@github.com:munch-group/${REPO}.git\n\n# initialize it\ngit submodule init ${REPO} # initialize it\n\n# and pull the current state of the submodule repo\ngit submodule update ${REPO}\n\n# track new .gitmodules\ngit add .gitmodules ${REPO} && git commit -m \"Added ${REPO} as submodule\" && git push \n\n# checkout main or some other branch)\ncd ${REPO} && git checkout main && cd .. \n\n# config sensible defaults for diff, status, and push\ngit config --global diff.submodule log\ngit config status.submodulesummary 1\ngit config push.recurseSubmodules check",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#add-a-submodule",
+    "href": "index.html#add-a-submodule",
+    "title": "TTLL10",
+    "section": "Add a submodule",
+    "text": "Add a submodule\nNow, say you have a project repo called “umbrella” that will contain other projects and that you have cloned that:\ngit clone git@github.com:kaspermunch/umbrella.git\nYou want to use an rfmix pipeline in your project. So you clone this repository as submodule:\n\n\nTerminal\n\ngit submodule add git@github.com:munch-group/rfmix.git\n\nand pull the current state of the submodule repo:\n\n\nTerminal\n\ngit submodule init rfmix\ngit submodule update rfmix\n\nThis also generates a .gitmodules configuration file that git uses to keep track of submodules. Commit that the addalong with the submodule:\n\n\nTerminal\n\ngit add .gitmodules rfmix\ngit commit -m 'Added rfmix as submodule'\ngit push\n\nIf you want to work on/change submodule repo you need to check out a branch to work on (main or some other). Always do this. If you decide to make changes later and forgot you did not check out a branch you could loose those changes:\n\n\nTerminal\n\ncd rfmix\ngit checkout main  # (or some other branch)",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#making-changes-to-the-submodule",
+    "href": "index.html#making-changes-to-the-submodule",
+    "title": "TTLL10",
+    "section": "Making changes to the submodule",
+    "text": "Making changes to the submodule\nnow you can then do some work on the tester repo (E.g. change the README.md) and add, commit as usual:\n\n\nTerminal\n\ncd rfmix\n# change README.md\ngit add README.md\ngit commit",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#publishing-submodule-changes-to-github",
+    "href": "index.html#publishing-submodule-changes-to-github",
+    "title": "TTLL10",
+    "section": "Publishing submodule changes to GitHub",
+    "text": "Publishing submodule changes to GitHub\nTo publish your submodule commit to the tester repo on GitHub you run:\n\n\nTerminal\n\ncd rfmix\ngit push",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#getting-submodule-changes-from-github",
+    "href": "index.html#getting-submodule-changes-from-github",
+    "title": "TTLL10",
+    "section": "Getting submodule changes from GitHub",
+    "text": "Getting submodule changes from GitHub\nif you run “git pull” in the umbrella repo, you pull upstream changes to the umbrella repo including the recorded state (commit) of the tester submodule:\n\n\nTerminal\n\ngit pull\n\nbut it does not pull the tester submodule itself. To do that you run pull in the submodule:\n\n\nTerminal\n\ncd rfmix\ngit pull",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#multiple-submodules",
+    "href": "index.html#multiple-submodules",
+    "title": "TTLL10",
+    "section": "Multiple submodules",
+    "text": "Multiple submodules\nYou can have as many submodules as you want. With more submodules, each update command updates all submodules.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html",
+    "href": "notebooks/ttll10_structure.html",
+    "title": "TTLL10",
+    "section": "",
+    "text": "Colored by AlphaFold confidence (pLDDT)\nHuman TTLL10 (UniProt Q6ZVT0, 673 aa). There is no experimental structure of TTLL10 in the PDB, so this uses the AlphaFold model (Jumper et al., 2021) from the AlphaFold Protein Structure Database (Varadi et al., 2024). Residue numbers are UniProt numbers for the canonical isoform (1–673). Structure is rendered using 3Dmol.js (Rego and Koes, 2015), loaded from the jsDelivr CDN, so internet access is needed for this.\nshow_structure(\"TTLL10\", base=\"plddt\", controls=False) \n\n\n\n\n  \n  \n  \n    TTLL10 (human) · UniProt Q6ZVT0 · AlphaFold AF-Q6ZVT0-F1 · 673 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#ttll-features",
+    "href": "notebooks/ttll10_structure.html#ttll-features",
+    "title": "TTLL10",
+    "section": "TTLL features",
+    "text": "TTLL features\nTTLL_Human domain feature viewer.\n\nATP_binding_residues = np.array([362, 363, 364, 365, 375, 377])\nTTLL_domain = np.arange(155, 553)\n\n\nshow_structure(\"TTLL10\", \n               highlight={\"red\": ATP_binding_residues, \"#4141ef\": TTLL_domain},\n               zoom=True,\n               controls=False,\n               )\n\n\n\n\n  \n  \n  \n    TTLL10 (human) · UniProt Q6ZVT0 · AlphaFold AF-Q6ZVT0-F1 · 673 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).\n  \n\n\n\n\n\nColoured by AlphaMissense pathogenicity (Humans only)\nAlphaMissense pathogenicity (Cheng et al., 2023) shows, for each residue, the mean predicted pathogenicity of the 19 possible substitutions (blue = benign, red = pathogenic). AlphaMissense’s “ambiguous” range around 0.34–0.56 in grey). Hovering shows the value.\n\nshow_structure(\"TTLL10\", base=\"alphamissense\", controls=False)\n\n\n\n\n  \n  \n  \n    TTLL10 (human) · UniProt Q6ZVT0 · AlphaFold AF-Q6ZVT0-F1 · 673 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).\n  \n\n\n\n\n\nam = np.array(alphamissense(\"TTLL10\"))\nfig, ax = plt.subplots(1, 1, figsize=(15, 0.3))\nax.pcolor(np.expand_dims(am, axis=0), cmap='coolwarm') ;",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#positions-polymorphic-across-baboons",
+    "href": "notebooks/ttll10_structure.html#positions-polymorphic-across-baboons",
+    "title": "TTLL10",
+    "section": "Positions polymorphic across baboons",
+    "text": "Positions polymorphic across baboons\n\nbaboons_all_polymorphic_zero_based = np.array([3, 15, 16, 28, 46, 57, 74, 107, 111, 125, 153, 159, 162, \n                            168, 202, 213, 244, 277, 278, 292, 344, 362, 363, 384, 399, \n                            430, 431, 434, 439, 460, 513, 519, 570, 574, 582, 596, 623, \n                            633, 636])\nbaboons_cross_species_polymorphic_zero_based = np.array([111, 162, 202, 277, 344, 363, 399, 430, 439])\n\n\ndef map_to_human_uniprot(baboon_zero_based):\n    \"\"\"\n    │ Baboon X1, 0-based p │ Human (UniProt Q6ZVT0) │\n    ├──────────────────────┼────────────────────────┤\n    │ 0–38                 │ p + 1                  │\n    ├──────────────────────┼────────────────────────┤\n    │ 39–598               │ p + 28                 │\n    ├──────────────────────┼────────────────────────┤\n    │ 599–600 (PT)         │ no human counterpart   │\n    ├──────────────────────┼────────────────────────┤\n    │ ≥ 601                │ p + 26                 │\n    \"\"\"\n    uniprot_one_based = []\n    for p in baboon_zero_based.tolist():\n        if p &lt;= 38:\n            uniprot_one_based.append(p+1)\n        elif p &lt;= 598:\n            uniprot_one_based.append(p+28)\n        elif p &gt;= 601:\n            uniprot_one_based.append(p+26)\n        else:\n            assert 0, 'no human counterpart'\n    return np.array(uniprot_one_based)\n    \nbaboons_all_polymorphic = map_to_human_uniprot(baboons_all_polymorphic_zero_based)\nbaboons_cross_species_polymorphic = map_to_human_uniprot(baboons_cross_species_polymorphic_zero_based)\n\n' '.join([f'{p}' for p in baboons_all_polymorphic])\n\n'4 16 17 29 74 85 102 135 139 153 181 187 190 196 230 241 272 305 306 320 372 390 391 412 427 458 459 462 467 488 541 547 598 602 610 624 649 659 662'\n\n\n\nbaboons_all_polymorphic\n\narray([  4,  16,  17,  29,  74,  85, 102, 135, 139, 153, 181, 187, 190,\n       196, 230, 241, 272, 305, 306, 320, 372, 390, 391, 412, 427, 458,\n       459, 462, 467, 488, 541, 547, 598, 602, 610, 624, 649, 659, 662])\n\n\n\nfrom matplotlib.gridspec import GridSpec\nimport seaborn as sns\n\nwith sns.axes_style('ticks'):\n    with sns.plotting_context('paper', font_scale=1):\n        am = np.array(alphamissense(\"TTLL10\"))\n        is_baboon_poly = np.zeros(len(am))\n        is_baboon_poly[baboons_all_polymorphic-1] = 0.5\n        is_baboon_poly[baboons_cross_species_polymorphic-1] = 1\n#        is_baboon_poly = np.array([int(x in baboons_all_polymorphic) for x in range(1, len(am)+1)])\n        rows = 7\n        per_row = len(am) / rows\n        per_row = int(per_row // 10 * 10 + 10)\n\n        fig = plt.figure(figsize=(20, 1.1*rows))        \n        gs = GridSpec(rows*3, 1, figure=fig, hspace=0, height_ratios=[1, 3, 4]*rows)\n        ax = None\n        xticks = np.arange(0, per_row, 10)+0.5\n        for i, r in enumerate(range(0, rows*3, 3)):\n            ax = fig.add_subplot(gs[r, :])\n            ax.pcolor(np.expand_dims(is_baboon_poly[(i*per_row):(i*per_row+per_row)], axis=0), cmap='Grays', edgecolors='k', linewidths=0.5)\n            ax.get_yaxis().set_ticks([])\n            ax.get_xaxis().set_ticks([])\n            ax.yaxis.set_visible(False)\n            ax.xaxis.set_visible(False)\n\n\n            ax = fig.add_subplot(gs[r+1, :], sharex=ax)\n            ax.pcolor(np.expand_dims(am[(i*per_row):(i*per_row+per_row)], axis=0), cmap='coolwarm', edgecolors='k', linewidths=0.5)\n            ax.spines['top'].set_visible(False)\n            ax.get_yaxis().set_ticks([])\n            ax.yaxis.set_visible(False)\n\n            ax = fig.add_subplot(gs[r+2, :], sharex=ax)\n            ax.set_axis_off()\n            ax.set_xticks(xticks)\n\n            ax.set_xticklabels([int(x + i * per_row + 0.5) for x in xticks])\n            ax.get_yaxis().set_ticks([])\n\n            ax.set_xlim(0, per_row)\n        plt.tight_layout()\n\n\n\n\n\n\n\n\n\nhuman_nucl_polymorphic = seq[baboons_all_polymorphic-1].tolist()\n'  '.join(human_nucl_polymorphic)\n\n'G  W  R  G  A  R  V  P  P  P  G  Y  W  R  E  G  Q  G  L  R  H  L  R  A  T  L  V  T  P  L  A  A  E  A  E  R  R  A  L'\n\n\n\nam = np.array(alphamissense(\"TTLL10\", baboons_all_polymorphic))\nfig, ax = plt.subplots(1, 1, figsize=(10, 0.3))\nax.pcolor(np.expand_dims(am, axis=0), edgecolors='k', linewidths=1, cmap='coolwarm') \nax.set_axis_off()\n\n\n\n\n\n\n\n\n\nshow_structure(\"TTLL10\", base=\"alphamissense\",\n            highlight=baboons_cross_species_polymorphic,\n            highlight_color=None,\n            highlight_radius=0.5,\n            # sticks_for=baboons_all_polymorphic,\n            controls=False,\n            zoom=True,\n            height=900,\n            )\n\n\n\n\n  \n  \n  \n    TTLL10 (human) · UniProt Q6ZVT0 · AlphaFold AF-Q6ZVT0-F1 · 673 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#all-baboon-polymorphic-as-fat-sticks",
+    "href": "notebooks/ttll10_structure.html#all-baboon-polymorphic-as-fat-sticks",
+    "title": "TTLL10",
+    "section": "All baboon polymorphic as fat sticks",
+    "text": "All baboon polymorphic as fat sticks\n\nshow_structure(\"TTLL10\", show='sticks', base=\"alphamissense\",\n            highlight=baboons_all_polymorphic,\n            highlight_color=None,\n            highlight_radius=0.5,\n            sticks_for=baboons_all_polymorphic,\n            zoom=True,\n            controls=False,\n            height=900,\n            )\n\n\n\n\n  \n  \n  \n    TTLL10 (human) · UniProt Q6ZVT0 · AlphaFold AF-Q6ZVT0-F1 · 673 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#only-cross-species-polymorphic-as-fat-sticks",
+    "href": "notebooks/ttll10_structure.html#only-cross-species-polymorphic-as-fat-sticks",
+    "title": "TTLL10",
+    "section": "Only cross-species polymorphic as fat sticks",
+    "text": "Only cross-species polymorphic as fat sticks\n\nshow_structure(\"TTLL10\", show='sticks', base=\"alphamissense\",\n            highlight=baboons_cross_species_polymorphic,\n            highlight_color=None,\n            highlight_radius=0.5,\n            sticks_for=baboons_all_polymorphic,\n            controls=False,\n            zoom=True,\n            height=900,\n            )\n\n\n\n\n  \n  \n  \n    TTLL10 (human) · UniProt Q6ZVT0 · AlphaFold AF-Q6ZVT0-F1 · 673 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#only-high-freq-cross-species-polymorphic-as-fat-sticks",
+    "href": "notebooks/ttll10_structure.html#only-high-freq-cross-species-polymorphic-as-fat-sticks",
+    "title": "TTLL10",
+    "section": "Only high-freq cross-species polymorphic as fat sticks",
+    "text": "Only high-freq cross-species polymorphic as fat sticks\n\nshow_structure(\"TTLL10\", #show='sticks',\n                base=\"alphamissense\",\n            # highlight=[230, 305, 372, 391, 467],\n            highlight=baboons_cross_species_polymorphic,\n            highlight_color=None,\n            highlight_radius=0.5,\n            sticks_for=baboons_all_polymorphic,\n            controls=False,\n            zoom=True,\n            height=900,\n            )\n\n\n\n\n  \n  \n  \n    TTLL10 (human) · UniProt Q6ZVT0 · AlphaFold AF-Q6ZVT0-F1 · 673 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).\n  \n\n\n\n\nalphamissense() returns the mean pathogenicity per residue (the values behind base=\"alphamissense\") as a list, one per residue (element 0 = residue 1), or only for the residues given; human AlphaFold models only.",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#are-cross-species-polymorphisms-are-more-pathogenic",
+    "href": "notebooks/ttll10_structure.html#are-cross-species-polymorphisms-are-more-pathogenic",
+    "title": "TTLL10",
+    "section": "Are cross-species polymorphisms are more pathogenic?",
+    "text": "Are cross-species polymorphisms are more pathogenic?\nPathogenic variants (score &gt;0.75) are not significantly enriched among cross-species polymorphic (among all polymorphic):\n\nam = alphamissense(\"TTLL10\")\nhigh_pat = set([i+1 for i, a in enumerate(alphamissense(\"TTLL10\")) if a &gt; 0.75])\n\nfisher_test(baboons_cross_species_polymorphic, \n            high_pat, \n            list(range(1, len(am)+1)), \n            return_counts=True\n            )\n\n(0.6785417275173369, [[2, 160], [7, 504]])\n\n\nPathogenic variants (score &gt;0.75) are not significantly enriched among cross-species polymorphic (among all protein positions):\n\nfisher_test(baboons_cross_species_polymorphic, \n            high_pat.intersection(baboons_all_polymorphic), \n            baboons_all_polymorphic, \n            return_counts=True\n            )\n\n(0.424901681867626, [[2, 4], [7, 26]])\n\n\n\nprint('cross-species poly:')\nfor p in set(baboons_cross_species_polymorphic.tolist()).intersection(high_pat):\n    print(f'Nr {p}: {am[p-1]:.2}')\nprint()\nprint('all other poly:')\nfor p in set(baboons_all_polymorphic.tolist()).difference(baboons_cross_species_polymorphic.tolist()).intersection(high_pat):\n    print(f'Nr {p}: {am[p-1]:.2}')\n\ncross-species poly:\nNr 190: 0.77\nNr 391: 0.79\n\nall other poly:\nNr 320: 1.0\nNr 488: 0.79\nNr 196: 0.94\nNr 462: 0.75\n\n\n\nwith_sp_patho = alphamissense(\"TTLL10\", set(baboons_all_polymorphic).difference(baboons_cross_species_polymorphic))\nall_patho = alphamissense(\"TTLL10\")\nprint(np.mean(with_sp_patho), \"&lt;\", np.mean(all_patho))\n      \nresult = stats.mannwhitneyu(\n    alphamissense(\"TTLL10\", set(baboons_all_polymorphic).difference(baboons_cross_species_polymorphic)),\n    alphamissense(\"TTLL10\"),\n    alternative='less',\n    )\nprint(f\"p-value: {result.pvalue}\")\n\n0.36944052631578944 &lt; 0.42719774771252056\np-value: 0.29847626694005425\n\n\n\ndef fisher_test(one, other, background, min_dist=None, return_counts=False):\n\n    a, b = one, other\n    a, b, background = set(a), set(b), set(background)\n\n    not_in_background = a.union(b).difference(background)\n    if not_in_background:\n        print(f'Removed {len(not_in_background)} genes not in background set', file=sys.stderr)\n    if min_dist is not None:\n        try:\n            a = one._distance_prune(other, *min_dist)\n        except AttributeError as e:\n            print('Distance pruning only works for GeneList objects.')\n            raise e\n        \n    M = len(background) \n    N = len(background.intersection(a))\n    n = len(background.intersection(b))\n    x = len(background.intersection(a).intersection(b))\n    table = [[  x,           n - x          ],\n            [ N - x,        M - (n + N) + x]]\n    if return_counts:\n        return float(scipy.stats.fisher_exact(table, alternative='greater').pvalue), table\n    return float(scipy.stats.fisher_exact(table, alternative='greater').pvalue)  \n\nresult = stats.mannwhitneyu(\n    alphamissense(\"TTLL10\", baboons_cross_species_polymorphic),\n    alphamissense(\"TTLL10\", baboons_all_polymorphic),\n    alternative='greater',\n    )\nprint(f\"cross-species polymorphic vs. polymorphic: p-value: {result.pvalue}\")\n\nresult = stats.mannwhitneyu(\n    alphamissense(\"TTLL10\", baboons_cross_species_polymorphic),\n    alphamissense(\"TTLL10\"),\n    alternative='greater',\n    )\nprint(f\"cross-species polymorphic vs. all: p-value: {result.pvalue}\")\n\ncross-species polymorphic vs. polymorphic: p-value: 0.08270726353831176\ncross-species polymorphic vs. all: p-value: 0.10331584315655112",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#why-would-more-pathogenic-variants-tend-to-be-older-cross-species-than-less-pathogenic-ones",
+    "href": "notebooks/ttll10_structure.html#why-would-more-pathogenic-variants-tend-to-be-older-cross-species-than-less-pathogenic-ones",
+    "title": "TTLL10",
+    "section": "Why would more pathogenic variants tend to be older (cross-species) than less pathogenic ones?",
+    "text": "Why would more pathogenic variants tend to be older (cross-species) than less pathogenic ones?\n\nPathogenic variants of the ancestral functional protein were initially under positive selection.",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/ttll10_structure.html#other-proteins",
+    "href": "notebooks/ttll10_structure.html#other-proteins",
+    "title": "TTLL10",
+    "section": "Other proteins",
+    "text": "Other proteins\nThe first argument can be a gene or protein name (looked up in UniProt for organism, human by default), a UniProt accession, or a PDB ID. Names and accessions show the AlphaFold model; a PDB ID shows one chain of the experimental structure (choose it with chain=; pLDDT colouring is not available there, and hovering shows the B-factor instead). Everything is downloaded once and reused from structures/; the line under each viewer says exactly which entry is shown.\nshow_structure(\"TTLL10\", organism=\"mouse\", base=\"plddt\")   # mouse Ttll10 (UniProt A4Q9F3)\nshow_structure(\"Q6ZVT0\")                                    # by accession\nshow_structure(\"1UBQ\", chain=\"A\")                           # experimental structure from the PDB\n\nshow_structure(\"TTLL10\", organism=\"mouse\", base=\"plddt\")   # mouse Ttll10 (UniProt A4Q9F3)\n\n\n\n\n  \n\n  Residues \n  \n  add as \n    highlightsticks\n  Add\n  Clear\n  Show as \n    cartoonsticks\n    cartoon + sticks\n  Colour by \n    greypLDDT\n    AlphaMissense\n    rainbow N→C\n   side chains\n   element colours\n   labels\n   spin\n  Zoom to highlights\n  Zoom to all\n  Copy rotation\n  Save PNG\n\n  \n  \n    Ttll10 (mouse) · UniProt A4Q9F3 · AlphaFold AF-A4Q9F3-F1 · 704 residues\n    Loading 3D viewer… If this message stays, the notebook's JavaScript did not run:\n      re-run the cell (in JupyterLab, trust the notebook).",
+    "crumbs": [
+      "Notebooks",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>TTLL10</span>"
+    ]
+  },
+  {
+    "objectID": "workflow.html",
+    "href": "workflow.html",
+    "title": "GWF workflow",
+    "section": "",
+    "text": "Imports and utility functions\nr”“”\nExample workflow using mapping between intput and output of each target. It is made to show all the ways information may be passed through an workflow.\n““”\nimport os\nfrom pathlib import Path\nfrom gwf import Workflow, AnonymousTarget\nfrom gwf.workflow import collect\nimport glob\nInstantiate the workflow with the name of the project folder:\n# instantiate the workflow\ngwf = Workflow(defaults={'account': 'your-project-folder-name'})\nUtility functions:\n# utility function\ndef modify_path(path, **kwargs):\n    \"\"\"\n    Utility function for modifying file paths substituting\n    the directory (dir), base name (base), or file suffix (suffix).\n    \"\"\"\n    for key in ['dir', 'base', 'suffix']:\n        kwargs.setdefault(key, None)\n    assert len(kwargs) == 3\n\n    par, name = os.path.split(path)\n    name_no_suffix, suf = os.path.splitext(name)\n    if type(kwargs['suffix']) is str:\n        suf = kwargs['suffix']\n    if kwargs['dir'] is not None:\n        par = kwargs['dir']\n    if kwargs['base'] is not None:\n        name_no_suffix = kwargs['base']\n\n    new_path = os.path.join(par, name_no_suffix + suf)\n    if type(kwargs['suffix']) is tuple:\n        assert len(kwargs['suffix']) == 2\n        new_path, nsubs = re.subn(r'{}$'.format(kwargs['suffix'][0]), kwargs['suffix'][1], new_path)\n        assert nsubs == 1, nsubs\n    return new_path",
+    "crumbs": [
+      "Workflows",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>GWF workflow</span>"
+    ]
+  },
+  {
+    "objectID": "workflow.html#template-functions",
+    "href": "workflow.html#template-functions",
+    "title": "GWF workflow",
+    "section": "Template functions:",
+    "text": "Template functions:\n\n# task template function\ndef uppercase_names(raw_path): \n    \"\"\"\n    Formats names to uppercase.\n    \"\"\"\n    # dir for files produces by task\n    output_dir = 'steps/upper_cased'\n    # path of output file\n    uppercased_path = modify_path(raw_path, dir=output_dir, suffix='_uppercased.txt')\n\n    # input specification\n    inputs = [raw_path]\n    # output specification mapping a label to each file\n    outputs = {'uppercased_path': uppercased_path}\n    # resource specification\n    options = {'memory': '8g', 'walltime': '00:10:00'} \n\n    # tmporary output file path\n    tmp_uppercased_path = modify_path(raw_path, dir='/tmp')\n\n    # commands to run in task (bash script)\n    # we write to a tmp file and move that to the output directory \n    # only if the command succeds (the && takes care of that)\n    spec = f\"\"\"\n    mkdir -p {output_dir}\n    cat {raw_path} | tr [:lower:] [:upper:] &gt; {tmp_uppercased_path} &&\n        mv {tmp_uppercased_path} {uppercased_path}\n    \"\"\"\n    # return target\n    return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)\n\n\n# task template function\ndef divide_names(uppercased_path, me=None):\n    \"\"\"\n    Splits names into two files. One with my name and one with other names.\n    \"\"\"\n    # uppercased version of the me argument\n    uppercased_me = me.upper()\n\n    # dir for files produces by task\n    output_dir = 'steps/filtered_names'\n    # path of output file with names matching me\n    filt_me_path = modify_path(uppercased_path, dir=output_dir, suffix=f'_{me}.txt')\n    # path of output file with other names\n    filt_other_path = modify_path(uppercased_path, dir=output_dir, suffix=f'_not_{me}.txt')\n\n    # input specification\n    inputs = [uppercased_path]\n    # output specification mapping a label to each file\n    outputs = {'filt_me_path': filt_me_path, 'filt_other_path': filt_other_path}\n    # resource specification\n    options = {'memory': '8g', 'walltime': '00:10:00'} \n\n    # tmporary output file paths\n    tmp_filt_me_path = modify_path(filt_me_path, dir='/tmp')\n    tmp_filt_other_path = modify_path(filt_other_path, dir='/tmp')\n\n    # commands to run in task (bash script)\n    # we write to tmp files and move them to the output directory \n    # only if the command succeds (the && takes care of that)\n    spec = f\"\"\"\n    mkdir -p {output_dir}    \n    grep {uppercased_me} {uppercased_path} &gt; {tmp_filt_me_path} &&  \n        grep -v {uppercased_me} {uppercased_path} &gt; {tmp_filt_other_path} &&  \n        mv {tmp_filt_me_path} {filt_me_path} &&  \n        mv {tmp_filt_other_path} {filt_other_path}\n    \"\"\"\n    # return target\n    return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)\n\n\n# task template function\ndef unique_names(filt_me_path, filt_other_path): \n    \"\"\"\n    Extracts unique names from a file.\n    \"\"\"\n    # dir for files produces by task\n    output_dir = 'steps/unique_names'\n    # path of output file with unique names matching me\n    uniq_me_path = modify_path(filt_me_path, dir=output_dir, suffix='_unique.txt')\n    # path of output file with unique other names\n    uniq_other_path = modify_path(filt_other_path, dir=output_dir, suffix='_unique.txt')\n\n    # input specification\n    inputs = [filt_me_path, filt_other_path]\n    # output specification mapping a label to each file\n    outputs = {'unique_me_path': uniq_me_path, 'unique_other_path': uniq_other_path}\n    # resource specification\n    options = {'memory': '8g', 'walltime': '00:10:00'} \n\n    # tmporary output file paths\n    tmp_uniq_me_path = modify_path(uniq_me_path, dir='/tmp')\n    tmp_uniq_other_path = modify_path(uniq_other_path, dir='/tmp')\n\n    # commands to run in task (bash script)\n    # we write to tmp files and move them to the output directory \n    # only if the command succeds (the && takes care of that)\n    spec = f\"\"\"\n    mkdir -p {output_dir}    \n    sort {filt_me_path} | uniq &gt; {tmp_uniq_me_path} && \n        sort {filt_other_path} | uniq &gt; {tmp_uniq_other_path} && \n        mv {tmp_uniq_me_path} {uniq_me_path} && \n        mv {tmp_uniq_other_path} {uniq_other_path}\n    \"\"\"\n    # return target\n    return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)\n\n\n# task template function\ndef merge_names(paths, output_path): \n    \"\"\"\n    Merges names from many files.\n    \"\"\"\n    # dir for files produces by task\n    output_dir = modify_path(output_path, base='', suffix='')\n\n    # input specification\n    inputs = [paths]\n    # output specification mapping a label to the file\n    outputs = {'path': output_path}\n\n    # tmporary output file path\n    tmp_output_path =  modify_path(output_path, dir='/tmp')\n\n    # resource specification\n    options = {'memory': '8g', 'walltime': '00:10:00'} \n\n    # commands to run in task (bash script)\n    # we write to tmp files and move them to the output directory \n    # only if the command succeds (the && takes care of that)\n    spec = f\"\"\"\n    mkdir -p {output_dir}\n    cat {' '.join(paths)} &gt; {tmp_output_path} && \n        mv {tmp_output_path} {output_path}\n    \"\"\"\n    # return target\n    return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)\n\n# task template function\ndef run_notebook(path, dependencies, memory='8g', walltime='00:10:00', cores=1):    \n    \"\"\"\n    Executes a notebook inplace and saves the output.\n    \"\"\"\n    # path of output sentinel file\n    sentinel = modify_path(path, base=f'.{str(Path(path).name)}', suffix='.sentinel')\n    # sentinel = path.parent / f'.{path.name}'\n\n    # input specification\n    inputs = [path] + dependencies\n    # output specification mapping a label to each file\n    outputs = {'sentinel': sentinel}\n    # resource specification\n    options = {'memory': memory, 'walltime': walltime, 'cores': cores} \n\n    # commands to run in task (bash script)\n    spec = f\"\"\"\n    jupyter nbconvert --to notebook --execute --inplace {path} && touch {sentinel}\n    \"\"\"\n    # return target\n    return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)",
+    "crumbs": [
+      "Workflows",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>GWF workflow</span>"
+    ]
+  },
+  {
+    "objectID": "workflow.html#workflow",
+    "href": "workflow.html#workflow",
+    "title": "GWF workflow",
+    "section": "Workflow:",
+    "text": "Workflow:\n\n# instantiate the workflow\ngwf = Workflow(defaults={'account': 'your-project-folder-name'})\n\n# input files for workflow\ninput_file_names = ['data/input_file1.txt', 'data/input_file2.txt']\n\n# workflow parameter\nmyname = 'Kasper'\n\n# run an uppercase_names task for each input file\nuppercase_names_targets = gwf.map(uppercase_names, input_file_names)\n\n# run an divide_names task for each output file from uppercase_names\nfilter_names_targets = gwf.map(divide_names, uppercase_names_targets.outputs, extra=dict(me=myname))\n\n# run an unique_names task for each output file from divide_names\nunique_names_targets = gwf.map(unique_names, filter_names_targets.outputs)\n\n# collect the outputs labelled 'unique_me_path' from all the outputs of unique_names \ncollected_outputs = collect(unique_names_targets.outputs, ['unique_me_path'])\n\n# create a single task to merge all those files into one\nmerge_me_target = gwf.target_from_template(\n    'merge_not_me_name_files',\n    merge_names(collected_outputs['unique_me_paths'], \"results/merged_me_names.txt\")\n    )\n\n# collect the outputs labelled 'unique_other_path' from all the outputs of unique_names \ncollected_outputs = collect(unique_names_targets.outputs, ['unique_other_path'])\n\n# create a single task to merge all those files into one\nmerge_other_target = gwf.target_from_template(\n    'merge_me_name_files',\n    merge_names(collected_outputs['unique_other_paths'], \"results/merged_not_me_names.txt\")\n    )\n\n# make notebooks depend on all output files from workflow\nnotebook_dependencies = []\nfor x in gwf.targets.values():\n    outputs = x.outputs\n    if type(outputs) is dict:\n        for o in outputs.values():\n            notebook_dependencies.append(o)\n    elif type(outputs) is list:\n        notebook_dependencies.extend(outputs)\n\n#  run notebooks in sorted order nb01_, nb02_, ...\nfor path in glob.glob('notebooks/*.ipynb'):\n    target = gwf.target_from_template(\n        os.path.basename(path), run_notebook(path, notebook_dependencies))\n    # make notebooks depend on all previous notebooks\n    notebook_dependencies.append(target.outputs['sentinel'])",
+    "crumbs": [
+      "Workflows",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>GWF workflow</span>"
+    ]
+  }
+]
