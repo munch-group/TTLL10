@@ -9,12 +9,12 @@ pixi run init
 
 ## Incomporate forked repo with updates to template
 
-If you forked the `munch-group-project` rather than using it as template, you can incorporate changes/fixes made to `munch-group-project`.
+If you forked the `TTLL10` rather than using it as template, you can incorporate changes/fixes made to `TTLL10`.
 
 Add upstream if not already added
 
 ```bash
-git remote add upstream https://github.com/munch-group/munch-group-project.git
+git remote add upstream https://github.com/munch-group/TTLL10.git
 ```
 
 Fetch upstream changes
